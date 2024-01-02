@@ -1,5 +1,9 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kjbn_test_dummy/blocs/home_bloc/bloc.dart';
+import 'package:kjbn_test_dummy/blocs/home_bloc/event.dart';
+import 'package:kjbn_test_dummy/blocs/home_bloc/state.dart';
 import 'package:kjbn_test_dummy/constants.dart';
 import 'package:kjbn_test_dummy/widgets/widget_1.dart';
 import 'package:kjbn_test_dummy/widgets/widget_3.dart';
@@ -29,35 +33,54 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Widget1(
-                  title: AppConstants.currentSecond,
-                  value: '37',
-                  backgroundColor: Colors.blue.shade900,
-                ),
-                Widget1(
-                  title: AppConstants.randomNumber,
-                  value: '39',
-                  backgroundColor: Colors.pink.shade900,
-                )
+                BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
+                  return Widget1(
+                    title: AppConstants.currentSecond,
+                    value: state.currentSecond.toString(),
+                    backgroundColor: Colors.blue.shade900,
+                  );
+                }),
+                BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
+                  return Widget1(
+                    title: AppConstants.randomNumber,
+                    value: state.randomNumber.toString(),
+                    backgroundColor: Colors.pink.shade900,
+                  );
+                })
               ],
             ),
-            Widget3(
-              title: AppConstants.sorryTryAgain,
-              value: '${AppConstants.attempt}1',
-              backgroundColor: Colors.amber.shade500,
-            ),
+            BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
+              if (state.attemptStatus == AttemptStatus.failure) {
+                return Widget3(
+                  title: AppConstants.sorryTryAgain,
+                  value: '${AppConstants.attempt}${state.homeModel.failures}',
+                  backgroundColor: Colors.amber.shade500,
+                );
+              }
+              if (state.attemptStatus == AttemptStatus.success) {
+                return Widget3(
+                  title: AppConstants.success,
+                  value:
+                      '${AppConstants.score}${state.homeModel.successes}/${state.homeModel.attempts}',
+                  backgroundColor: Colors.green.shade500,
+                );
+              }
+              return const SizedBox.shrink();
+            }),
             CountdownTimerWidget(
               controller: _controller,
+              onComplete: () {
+                _controller.reset();
+                context.read<HomeBloc>().add(NoActionEvent());
+              },
             ),
             Widget5Button(
               onTap: () {
-                if (_controller.isStarted) {
-                  _controller.reset();
-                  setState(() {});
-                } else {
-                  _controller.start();
-                  setState(() {});
-                }
+                _controller.reset();
+                _controller.start();
+                context.read<HomeBloc>().add(TapEvent(
+                      currentSecond: DateTime.now().second,
+                    ));
               },
             )
           ],

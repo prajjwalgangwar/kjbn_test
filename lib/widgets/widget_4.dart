@@ -4,8 +4,12 @@ import 'package:flutter/material.dart';
 class CountdownTimerWidget extends StatefulWidget {
   final CountDownController controller;
   final int duration;
+  final Function()? onComplete;
   const CountdownTimerWidget(
-      {super.key, required this.controller, this.duration = 5});
+      {super.key,
+      required this.controller,
+      this.duration = 5,
+      this.onComplete});
 
   @override
   CountdownTimerWidgetState createState() => CountdownTimerWidgetState();
@@ -39,10 +43,7 @@ class CountdownTimerWidgetState extends State<CountdownTimerWidget>
       onStart: () {
         debugPrint('Countdown Started');
       },
-      onComplete: () {
-        debugPrint('Countdown Ended');
-        widget.controller.reset();
-      },
+      onComplete: widget.onComplete,
       onChange: (String timeStamp) {
         debugPrint('Countdown Changed $timeStamp');
       },
@@ -50,7 +51,7 @@ class CountdownTimerWidgetState extends State<CountdownTimerWidget>
         if (duration.inSeconds == 0) {
           return "$duration";
         } else {
-          return Function.apply(defaultFormatterFunction, [duration]);
+          return Function.apply(defaultFormatterFunction, [duration.inSeconds]);
         }
       },
     );
