@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kjbn_test_dummy/blocs/home_bloc/bloc.dart';
 import 'package:kjbn_test_dummy/blocs/home_bloc/event.dart';
 import 'package:kjbn_test_dummy/blocs/home_bloc/state.dart';
-import 'package:kjbn_test_dummy/constants.dart';
+import 'package:kjbn_test_dummy/utils/constants.dart';
 import 'package:kjbn_test_dummy/widgets/widget_1.dart';
 import 'package:kjbn_test_dummy/widgets/widget_3.dart';
 import 'package:kjbn_test_dummy/widgets/widget_4.dart';

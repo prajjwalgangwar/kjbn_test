@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kjbn_test_dummy/constants.dart';
+import 'package:kjbn_test_dummy/utils/constants.dart';
 
 class Widget5Button extends StatelessWidget {
   final String title;

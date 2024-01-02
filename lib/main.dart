@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kjbn_test_dummy/blocs/home_bloc/bloc.dart';
 import 'package:kjbn_test_dummy/blocs/home_bloc/event.dart';
-import 'package:kjbn_test_dummy/repository.dart';
-import 'package:kjbn_test_dummy/splash.dart';
+import 'package:kjbn_test_dummy/utils/repository.dart';
+import 'package:kjbn_test_dummy/screens/splash.dart';
 
 void main() {
   runApp(const MyApp());

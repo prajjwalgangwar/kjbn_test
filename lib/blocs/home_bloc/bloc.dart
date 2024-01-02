@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kjbn_test_dummy/blocs/home_bloc/event.dart';
 import 'package:kjbn_test_dummy/blocs/home_bloc/state.dart';
-import 'package:kjbn_test_dummy/constants.dart';
-import 'package:kjbn_test_dummy/home_model.dart';
-import 'package:kjbn_test_dummy/repository.dart';
+import 'package:kjbn_test_dummy/utils/constants.dart';
+import 'package:kjbn_test_dummy/models/home_model.dart';
+import 'package:kjbn_test_dummy/utils/repository.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final XRepository repository;

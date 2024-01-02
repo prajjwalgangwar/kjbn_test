@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:kjbn_test_dummy/home_model.dart';
+import 'package:kjbn_test_dummy/models/home_model.dart';
 import 'package:kjbn_test_dummy/utils/local_storage.dart';
 
 class XRepository {
