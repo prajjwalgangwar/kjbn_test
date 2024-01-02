@@ -41,13 +41,14 @@ class CountdownTimerWidgetState extends State<CountdownTimerWidget>
       },
       onComplete: () {
         debugPrint('Countdown Ended');
+        widget.controller.reset();
       },
       onChange: (String timeStamp) {
         debugPrint('Countdown Changed $timeStamp');
       },
       timeFormatterFunction: (defaultFormatterFunction, duration) {
         if (duration.inSeconds == 0) {
-          return "00:05";
+          return "$duration";
         } else {
           return Function.apply(defaultFormatterFunction, [duration]);
         }

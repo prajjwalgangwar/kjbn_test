@@ -51,7 +51,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Widget5Button(
               onTap: () {
-                print('starting timer: ${_controller.isStarted}');
                 if (_controller.isStarted) {
                   _controller.reset();
                   setState(() {});
