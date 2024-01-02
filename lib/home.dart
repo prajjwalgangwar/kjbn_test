@@ -52,14 +52,15 @@ class _HomeScreenState extends State<HomeScreen> {
             BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
               if (state.attemptStatus == AttemptStatus.failure) {
                 return Widget3(
-                  title: AppConstants.sorryTryAgain,
-                  value: '${AppConstants.attempt}${state.homeModel.failures}',
+                  title: state.message,
+                  value:
+                      '${AppConstants.score}${state.homeModel.failures}/${state.homeModel.attempts}',
                   backgroundColor: Colors.amber.shade500,
                 );
               }
               if (state.attemptStatus == AttemptStatus.success) {
                 return Widget3(
-                  title: AppConstants.success,
+                  title: state.message,
                   value:
                       '${AppConstants.score}${state.homeModel.successes}/${state.homeModel.attempts}',
                   backgroundColor: Colors.green.shade500,

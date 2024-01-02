@@ -14,7 +14,8 @@ class Widget3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150,
+      // height: 150,
+      padding: const EdgeInsets.symmetric(vertical: 8),
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
@@ -22,6 +23,7 @@ class Widget3 extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: backgroundColor)),
       child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

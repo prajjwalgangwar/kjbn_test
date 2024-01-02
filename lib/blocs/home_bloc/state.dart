@@ -6,13 +6,14 @@ enum AttemptStatus { initial, failure, success }
 class HomeState extends Equatable {
   final int randomNumber;
   final int currentSecond;
-
+  final String message;
   final HomeModel homeModel;
   final AttemptStatus attemptStatus;
 
   const HomeState({
     this.randomNumber = 0,
     this.currentSecond = 0,
+    this.message = '',
     this.homeModel = const HomeModel(),
     this.attemptStatus = AttemptStatus.initial,
   });
@@ -22,9 +23,11 @@ class HomeState extends Equatable {
     int? currentSecond,
     HomeModel? homeModel,
     AttemptStatus? attemptStatus,
+    String? message,
   }) {
     return HomeState(
         currentSecond: currentSecond ?? this.currentSecond,
+        message: message ?? this.message,
         homeModel: homeModel ?? this.homeModel,
         attemptStatus: attemptStatus ?? this.attemptStatus,
         randomNumber: randomNumber ?? this.randomNumber);
@@ -32,5 +35,5 @@ class HomeState extends Equatable {
 
   @override
   List<Object?> get props =>
-      [currentSecond, randomNumber, homeModel, attemptStatus];
+      [currentSecond, randomNumber, homeModel, attemptStatus, message];
 }

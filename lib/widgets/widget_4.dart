@@ -51,7 +51,8 @@ class CountdownTimerWidgetState extends State<CountdownTimerWidget>
         if (duration.inSeconds == 0) {
           return "$duration";
         } else {
-          return Function.apply(defaultFormatterFunction, [duration.inSeconds]);
+          return Function.apply(defaultFormatterFunction, [duration])
+              .toString();
         }
       },
     );
